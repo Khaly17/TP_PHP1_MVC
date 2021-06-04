@@ -1,6 +1,8 @@
 <?php
 
-//la classe  db etend la classe config
+/**
+ * la classe  db etend la classe config
+ */
 class db extends config{ 
 
     public function getEtudiant(){
@@ -10,7 +12,7 @@ class db extends config{
             echo 'Prenom : '.$row['prenom'].'<br>';
             echo 'Nom    : '.$row['nom'].'<br>';
             echo 'Matricule :'.$row['Matricule'].'<br>';
-            
+
             if($row['etatInscription'] == 0){
                 echo 'Etat d\' inscription : Expirée <br><br>';
             } else {
@@ -19,7 +21,9 @@ class db extends config{
         }
     }
     
-    //Afficher etudiant dont le matricule est passe en parametre
+    /**
+     * Afficher etudiant dont le matricule est passe en parametre
+     */
     public function setEtudiantwithID($matricule){
         $sql = "SELECT * FROM etudiant WHERE Matricule = ?";
         $stmt = $this->connect()->prepare($sql);
@@ -35,11 +39,14 @@ class db extends config{
                 echo 'Etat d\' inscription : Expirée <br><br>';
             } else {
                 echo 'Etat d\' inscription : Valide <br><br>';
-            }
+            }        
         } 
         
     }
-
+    
+    /***
+     * Ajouter un nouveau etudiant
+     */
     public function addEtudiant(Etudiant $etu){
        try{
             $nom = $etu->getNom();
